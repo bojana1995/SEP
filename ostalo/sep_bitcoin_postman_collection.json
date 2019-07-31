@@ -1,0 +1,106 @@
+{
+	"id": "ac0dc02a-9d01-7ec8-302f-f870362c40ab",
+	"name": "Bitcoin",
+	"description": "",
+	"order": [
+		"cf7f2661-decf-457e-ced4-e07953c73dee"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1545767762822,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "cf7f2661-decf-457e-ced4-e07953c73dee",
+			"headers": "Pragma: no-cache\nOrigin: https://localhost:9081\nAccept-Encoding: gzip, deflate, br\nAccept-Language: sr-RS,sr;q=0.9,en-US;q=0.8,en;q=0.7\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36\nContent-Type: application/json\nAccess-Control-Allow-Origin: *\nAccept: text/plain, */*; q=0.01\nCache-Control: no-cache\nReferer: https://localhost:9081/homePage.html\nConnection: keep-alive\n",
+			"headerData": [
+				{
+					"key": "Pragma",
+					"value": "no-cache",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Origin",
+					"value": "https://localhost:9081",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept-Encoding",
+					"value": "gzip, deflate, br",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept-Language",
+					"value": "sr-RS,sr;q=0.9,en-US;q=0.8,en;q=0.7",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "User-Agent",
+					"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Access-Control-Allow-Origin",
+					"value": "*",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Accept",
+					"value": "text/plain, */*; q=0.01",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Cache-Control",
+					"value": "no-cache",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Referer",
+					"value": "https://localhost:9081/homePage.html",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Connection",
+					"value": "keep-alive",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://api-sandbox.coingate.com/v2/invoice/821343a6-5edb-492d-a812-dbe6cfd6308f",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "ac0dc02a-9d01-7ec8-302f-f870362c40ab",
+			"data": [],
+			"dataMode": "raw",
+			"name": "invoice",
+			"description": "Generated from a curl request: \ncurl 'https://localhost:1236/zahtev/bitcoin' -H 'Pragma: no-cache' -H 'Origin: https://localhost:9081' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: sr-RS,sr;q=0.9,en-US;q=0.8,en;q=0.7' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36' -H 'Content-Type: application/json' -H 'Access-Control-Allow-Origin: *' -H 'Accept: text/plain, */*; q=0.01' -H 'Cache-Control: no-cache' -H 'Referer: https://localhost:9081/homePage.html' -H 'Connection: keep-alive' --data-binary '{\\\"amount\\\":\\\"12434.56\\\"}' --compressed --insecure",
+			"descriptionFormat": "html",
+			"time": 1545767764405,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\"amount\":\"12434.56\"}"
+		}
+	]
+}

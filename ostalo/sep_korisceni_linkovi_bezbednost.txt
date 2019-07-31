@@ -1,0 +1,32 @@
+SEP - korisceni linkovi:
+
+1. AES ECB:
+	https://howtodoinjava.com/security/java-aes-encryption-example/
+	
+2. AES CBC:
+	https://javapointers.com/tutorial/how-to-encrypt-and-decrypt-using-aes-in-java/
+	
+3. HTTPS i serifikati:
+	https://www.thomasvitale.com/https-spring-boot-ssl-certificate/
+	
+4. Sping Security:
+	https://www.baeldung.com/spring-security-expressions?fbclid=IwAR2777jmEe3KrFpY4eSeux_2msH5vdwBB8-v0OrenqNm58OvusfXkE0wW44
+	
+5. Logger:
+	https://www.baeldung.com/spring-boot-logging
+	
+6. @PreAuthorize:
+	https://www.baeldung.com/spring-security-method-security
+	
+7. @Transactional:
+	https://www.baeldung.com/transaction-configuration-with-jpa-and-spring
+	
+8. CSRF protection:
+	https://www.baeldung.com/spring-security-csrf
+	
+9. JWT:
+	https://medium.com/@xoor/jwt-authentication-service-44658409e12c
+	
+10. lazy initialization problem:
+	https://stackoverflow.com/questions/33622222/spring-boot-opensessioninviewfilter-with-actuator-and-custom-security
+	

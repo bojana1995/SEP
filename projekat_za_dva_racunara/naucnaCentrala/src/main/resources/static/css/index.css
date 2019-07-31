@@ -1,0 +1,56 @@
+html, .mojaKlasa {
+	height: 720px;
+	background-color: #F0F8FF;
+	background-image: linear-gradient(#F0F8FF, #4682B4);
+}
+
+.klasaUvucenoZaTab {
+	padding-left: 30px;
+}
+
+.zaglavljeTabele {
+	background-color: #87aee9;
+}
+
+.split {
+	height: 100%;
+	width: 60%;
+  	position: fixed;
+  	z-index: 1;
+	top: 0;
+	overflow-x: hidden;
+	padding-top: 10px;
+}
+	
+.left {
+	left: 0;
+}
+	
+.right {
+	right: 0;
+}
+	
+.centered {
+	position: absolute;
+	top: 40%;
+    left: 25%;
+	transform: translate(-50%, -50%);
+	text-align: left;
+}
+
+.centeredBtns {
+	position: absolute;
+	top: 10%;
+    left: 62%;
+	transform: translate(-40%, -40%);
+	padding-top: 20px;
+}
+
+.centeredImg {
+	position: absolute;
+	top: 40%;
+    left: 42%;
+	transform: translate(-40%, -40%);
+	text-align: center;
+	padding-top: 70px;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		html, .mojaKlasa {
+			height: 720px;
+			background-color: #F0F8FF;
+			background-image: linear-gradient(#F0F8FF, #4682B4);
+		}
+	</style>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Prijava</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script src="scripts/prijava.js" type="text/javascript"></script>
+	</head>
+	
+	<body>
+		<div class="mojaKlasa">
+			<div class="row">
+				<div class="col-lg-12 col-lg-9"></div>
+	  			<div class="col-lg-6 col-lg-3">
+				    <div class="form-group">
+				    	<form action="index.html" class="form-horizontal">
+					        <div class="col-lg-4">
+					            <input class="btn btn-link" type="submit" value="Početna">
+					        </div>
+				        </form>
+				        <form action="registracija.html" class="form-horizontal">
+					        <div class="col-lg-4">
+					            <input class="btn btn-link" type="submit" value="Registruj se">
+					        </div>
+					  	</form>
+				    </div>
+	  			</div>
+			</div>
+		
+			<div class="container">
+	   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+	        		<div class="panel panel-primary" >
+	            		<div class="panel-heading">
+	                		<div class="panel-title text-center">Prijava na sistem naučne centrale</div>
+	            		</div>
+	            		  
+	            		<div class="panel-body" style="padding-top:30px">
+	            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+	                		<form id="formaPrijaviSe" class="form-horizontal" enctype="multipart/form-data" method="POST">
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+	                        		<input type="email" class="form-control" name="email" value="" placeholder="E-mail adresa">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="password" class="form-control" name="lozinka" placeholder=Lozinka>
+	                    		</div> 
+	                    		        
+	                    		<div id="divValidacija"></div>  
+	                    		                                                                 
+	                    		<div class="form-group">
+	                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+	                            		<input id="dugmePrijaviSe" type="button" class="btn btn-primary" style="float:right" value="Prijavi se"> 	
+	                            	</div>
+	                    		</div>
+	                		</form>
+	            		</div>                     
+	        		</div>  
+	    		</div>
+			</div>	
+		</div>	
+	</body>	
+</html>

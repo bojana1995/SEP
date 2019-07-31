@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		html, .mojaKlasa {
+			height: 970px;
+			background-color: #F0F8FF;
+			background-image: linear-gradient(#F0F8FF, #4682B4);
+		}
+	</style>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Plaćanje</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="scripts/ocistiKorpu.js"></script>
+		<script src="scripts/paypalPretplata.js"></script>
+		
+	</head>
+	
+	<body>
+		<div class="mojaKlasa">
+			<div class="row">
+				<div class="col-lg-12 col-lg-9"></div>
+		  		<div class="col-lg-6 col-lg-3">
+					<div class="form-group">
+						<form action="" class="form-horizontal">
+							<div class="col-lg-4">
+						    	<input id="dugmeNazad" class="btn btn-link" type="button" value="Nazad">
+						    </div>
+				        </form>
+					    <form action="" class="form-horizontal">
+							<div class="col-lg-4">
+						    	<input id="dugmeOdjaviSe" class="btn btn-link" type="button" value="">
+						    </div>
+				       </form>
+					</div>
+		  		</div>
+			</div>
+		
+			<div style="padding-left:10px">
+				<h4>Uspesno ste se pretplatili na casopis.</h4>
+			</div>
+		</div>
+		
+		<script>
+			$("#dugmeNazad").click(function(){
+				location.href = "https://localhost:9081/homePage.html"
+			});
+		</script>
+	</body>
+</html>

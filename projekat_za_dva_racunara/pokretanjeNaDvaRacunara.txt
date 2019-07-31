@@ -1,0 +1,2 @@
+NC, PCC i KP su pokretane sa mog, a preostalih 5 aplikacija je pokretano sa drugog racunara. Tamo treba promeniti putanje, tako da pinguju mrezu mog laptopa.
+Putanje od moje 3 aplikacije ostaju sa localhost (9081 - NC, 1237 - PCC, 5522 - KP). Na svim ostalim portovima se menja u adresu mreze drugog racunara. Voditi racuna da se u browseru mora rucno ukucati https (ako je ubacen u aplikaciju). Podesiti firewall na of, ukljuciti dozvolu za javu.

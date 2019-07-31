@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		html{ overflow-y: scroll;}
+	</style>
+	<head>
+		<meta charset="UTF-8">
+		<title>Naučna centrala</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="css/index.css" rel="stylesheet" type="text/css"/>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script src="scripts/index.js"></script>
+	</head>
+	
+	<body>
+		<div class="mojaKlasa">
+			<div class="row">
+				<div class="col-lg-12 col-lg-9"></div>
+	  			<div class="col-lg-6 col-lg-3">
+				    <div class="form-group"></div>
+	  			</div>
+			</div>
+	        
+	        <!-- TABOVI -->
+	        <div class="container">
+			  <ul class="nav nav-tabs">
+			    <li class="active"><a data-toggle="tab" href="#pocetna"><b>Početna</b></a></li>
+			    <li><a data-toggle="tab" href="#casopisi"><b>Naučni časopisi</b></a></li>
+			    <li><a data-toggle="tab" href="#naucneOblasti"><b>Naučne oblasti</b></a></li>
+			    <li><a data-toggle="tab" href="#radovi"><b>Naučni radovi</b></a></li>
+			  </ul>
+			
+			  <div class="tab-content">
+			    <div id="pocetna" class="tab-pane fade in active">
+			    	<div>
+				      	<div class="container">
+						  <div class="centered">
+						    <h3>Šta je naučna centrala?</h3><br></br>
+							<p>Naučna centrala je sistem koji omogućava:</p>
+							<p class="klasaUvucenoZaTab"><i>1. vođenje procesa podnošenja, revizije i objavljivanja radova u na-<br/>učnom časopisu na srpskom jeziku</i></p>
+							<p class="klasaUvucenoZaTab"><i>2. pretragu repozitorijuma časopisa, kao i napredne funkcionalno-<br/>sti pretrage u sklopu procesa objavljivanja radova</i></p>
+							<p class="klasaUvucenoZaTab"><i>3. nekoliko vidova elektronskog plaćanja, putem kojih se uplaćuju<br/>članarine časopisu</i></p>				  
+						  </div>
+						</div>
+							
+						<div class="split right">
+						<div class="form-group centeredBtns">
+		                    <input id="dugmePrijaviSe4" type="button" class="btn btn-link" style="float:right" onclick="prijaviSe()" value="Prijavi se">
+		                	<input id="dugmeRegistrujSe4" type="button" class="btn btn-link" style="float:right" onclick="registrujSe()" value="Registruj se">	
+	                	</div>
+						  <div class="centeredImg">
+						  	<p><img src="slike/naucnaCentrala.png" width="750px" height="430px"></p>
+						  </div>
+						</div>
+					</div>
+			    </div>
+			    
+			    <div id="casopisi" class="tab-pane fade">
+			      	<div class="form-group">
+	                    <input id="dugmePrijaviSe1" onclick="prijaviSe()" type="button" class="btn btn-link" style="float:right" value="Prijavi se">
+	                	<input id="dugmeRegistrujSe1" onclick="registrujSe()" type="button" class="btn btn-link" style="float:right" value="Registruj se">	
+	                </div>
+			      	
+			      	<div class="form-group col-lg-6">
+			      		<h4><span id="dostupniCasopisi" class="row"></span></h4>
+					</div>
+			      	<table id="tabelaCasopisi" class="table table-hover table-bordered"></table>
+			      	
+			    </div>
+			    
+			    <div id="naucneOblasti" class="tab-pane fade">
+			      	<div class="form-group">
+	                    <input id="dugmePrijaviSe2" onclick="prijaviSe()" type="button" class="btn btn-link" style="float:right" value="Prijavi se">
+	                	<input id="dugmeRegistrujSe2" onclick="registrujSe()" type="button" class="btn btn-link" style="float:right" value="Registruj se">	
+	                </div>
+			      	
+			      	<div class="form-group col-lg-6">
+			      		<h4><span id="dostupneNaucneOblasti" class="row"></span></h4>
+					</div>
+			      	<table id="tabelaNaucneOblasti" class="table table-hover table-bordered"></table>
+			      	
+			    </div>
+			    
+			    <div id="radovi" class="tab-pane fade">
+			    	<div class="form-group">
+	                    <input id="dugmePrijaviSe3" onclick="prijaviSe()" type="button" class="btn btn-link" style="float:right" value="Prijavi se">
+	                	<input id="dugmeRegistrujSe3" onclick="registrujSe()" type="button" class="btn btn-link" style="float:right" value="Registruj se">	
+	                </div>
+			      	
+			      	<div class="form-group col-lg-6">
+			      		<h4><span id="dostupniRadovi" class="row"></span></h4>
+					</div>
+			      	<table id="tabelaRadovi" class="table table-hover table-bordered"></table>
+			      	
+			     
+			    </div>
+			  </div>
+			  
+			</div>
+        </div>
+        
+        <script>
+        	function prijaviSe(){
+        		location.href = "https://localhost:9081/prijava.html"
+        	}
+        	
+        	function registrujSe(){
+        		location.href = "https://localhost:9081/registracija.html"
+        	}
+        
+        </script>
+	</body>
+</html>

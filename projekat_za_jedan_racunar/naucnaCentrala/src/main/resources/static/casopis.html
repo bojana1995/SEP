@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		html, .mojaKlasa {
+			height: 780px;
+			background-color: #F0F8FF;
+			background-image: linear-gradient(#F0F8FF, #4682B4);
+		}
+	</style>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Naučni časopis</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+	</head>
+	
+	<body>
+		<div class="mojaKlasa">
+			<div class="row">
+				<div class="col-lg-12 col-lg-9"></div>
+	  			<div class="col-lg-6 col-lg-3">
+				    <div class="form-group">
+				    	<form action="index.html" class="form-horizontal">
+					        <div class="col-lg-4">
+					            <input class="btn btn-link" type="submit" value="Početna">
+					        </div>
+				        </form>
+				        <form action="homePage.html" class="form-horizontal">
+					        <div class="col-lg-4">
+					            <input class="btn btn-link" type="submit" value="Nazad">
+					        </div>
+				        </form>
+				    </div>
+	  			</div>
+			</div>
+		
+			<div class="container">
+	   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+	        		<div class="panel panel-primary" >
+	            		<div class="panel-heading">
+	                		<div class="panel-title text-center">Naučni časopis</div>
+	            		</div>
+	            		  
+	            		<div class="panel-body" style="padding-top:30px">
+	            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+	                		
+	                		<form style="padding-bottom: 10px">
+								<label>Odaberite tip časopisa:</label>
+								<div class="checkbox">
+									<label style="margin-left: 20px"><input id="checkboxSaPretplatom" type="checkbox" value="">sa pretplatom (čitalac plaća članarinu)</label>
+								</div>
+							</form>
+							
+							<form style="padding-bottom: 15px;">
+								<div class="form-group col-lg-12"  style="margin-bottom: 25px; margin-left: -15px">
+									<select class="form-control" multiple id="tipoviPlacanja">
+										<option value="3" disabled style="font-weight: bold">Odaberite najmanje jedan podržani tip plaćanja:</option>
+										<option value="0" style="margin-left: 20px">Banka</option>
+										<option value="1" style="margin-left: 20px">PayPal</option>
+										<option value="2" style="margin-left: 20px">Bitcoin</option>
+									</select>
+								</div>
+							</form>
+	                		
+	                		<form id="formaDodajCasopis" class="form-horizontal" enctype="multipart/form-data" method="POST">	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+	                        		<input type="number" class="form-control" name="issnbroj" value="" placeholder="ISSN broj">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+	                        		<input type="text" class="form-control" name="naziv" placeholder="Naziv">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                        		<input type="text" class="form-control" name="merchantId" placeholder="Oznaka poslodavca">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="password" class="form-control" name="merchantPassword" placeholder="Lozinka poslodavca">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+	                        		<input type="number" class="form-control" name="amount" placeholder="Iznos članarine">
+	                    		</div>
+	                    		
+	                    		<div id= "paypalId" class="input-group" style="margin-bottom: 25px; display: none">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+	                        		<input id="paypalIdInput" type="text" class="form-control" name="paypalId" placeholder="Paypal id">
+	                    		</div>
+	                    		
+	                    		<div id = "paypalSecret"  class="input-group" style="margin-bottom: 25px; display: none">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input id="paypalSecretInput" type="text" class="form-control" name="paypalSecret" placeholder="Paypal secret">
+	                    		</div>
+		                    		  
+		                    	<div id = "pan" class="input-group"  style="margin-bottom: 25px; display: none">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
+	                        		<input type="number" id = "panInput" class="form-control" name="pan" value="" placeholder="PAN">
+	                    		</div>
+	                    		
+	                    		<div id = "sigurnosniKod" class="input-group" style="margin-bottom: 25px; display: none">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
+	                        		<input id = "sigurnosniKodInput" type="number" class="form-control" name="sigurnosniKod" placeholder="Sigurnosni kod">
+	                    		</div>
+	                    		  
+		                    	<div id="divValidacija"></div>
+		                    		                                                                 
+		                    	<div class="form-group">
+		                        	<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+		                            	<input id="dugmeDodaj" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	
+		                            </div>
+		                    	</div>
+	                		
+	                		</form>
+	            		</div>                     
+	        		</div>  
+	    		</div>
+			</div>
+		</div>	
+		
+		<script type="text/javascript">
+			$("#dugmeDodaj").click(function(){
+				var provera = true;
+				var forma = $('form[id="formaDodajCasopis"]');
+				var issnbroj = forma.find('[name=issnbroj]').val();
+				var naziv = forma.find('[name=naziv]').val();
+				var merchantId = forma.find('[name=merchantId]').val();
+				var merchantPassword = forma.find('[name=merchantPassword]').val();
+				var amount = forma.find('[name=amount]').val();
+				var tipoviPlacanja = $('#tipoviPlacanja').val();
+				var paypalId = '';
+				var paypalSecret = '';
+				if (tipoviPlacanja.indexOf('1') > -1){
+					paypalId = $('#paypalIdInput').val();
+					paypalSecret = $('#paypalSecretInput').val();
+					if(paypalId == '' || paypalId == null || paypalSecret == '' || paypalSecret == null){
+						$('#divValidacija').empty();
+						$('#divValidacija').append('<p style="color:red"><b>Unesite paypal podatke.</b></p>');
+						provera = false;
+					}else{
+						provera = true;
+					}
+				}
+				if (tipoviPlacanja.indexOf('0') > -1){
+					pan = $('#panInput').val();
+					sigurnosniKod = $('#sigurnosniKodInput').val();
+					if(pan == '' || pan == null || sigurnosniKod == '' || sigurnosniKod == null){
+						$('#divValidacija').empty();
+						$('#divValidacija').append('<p style="color:red"><b>Unesite podatke o kartici.</b></p>');
+						provera = false;
+					}else{
+						provera = true;
+					}
+				}
+				
+				if(!issnbroj) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti ISSN broj.</b></p>');
+					provera = false;
+				}
+				if(issnbroj.length != 8) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>ISSN broj mora sadržati tačno 8 cifara.</b></p>');
+					provera = false;
+				}
+				if(!naziv) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti naziv.</b></p>');
+					provera = false;
+				}
+				if(!merchantId) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti oznaku poslodavca.</b></p>');
+					provera = false;
+				}
+				if(!merchantPassword) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti lozinku poslodavca.</b></p>');
+					provera = false;
+				}
+				var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,30}/;
+				if(merchantPassword.length > 30 || merchantPassword.length<10 || !isNaN(merchantPassword) || (!passwordRegex.test(merchantPassword))
+				   || merchantPassword == "123456" || merchantPassword == "password" || merchantPassword == "12345678" || merchantPassword == "qwerty" || merchantPassword == "12345" || 
+				   merchantPassword == "123456789" || merchantPassword == "letmein" || merchantPassword == "1234567" || merchantPassword == "football" || merchantPassword == "iloveyou" || 
+				   merchantPassword == "admin" || merchantPassword == "welcome" || merchantPassword == "monkey" || merchantPassword == "login" || merchantPassword == "abc123" || 
+				   merchantPassword == "starwars" || merchantPassword == "123123" || merchantPassword == "dragon" || merchantPassword == "passw0rd" || merchantPassword == "master" || 
+				   merchantPassword == "hello" || merchantPassword == "freedom" || merchantPassword == "whatever" || merchantPassword == "qazwsx" || merchantPassword == "trustno1" || 
+				   merchantPassword == "123456789@Bs"){
+				   		$('#divValidacija').empty();
+						$('#divValidacija').append('<p style="color:red"><b>Lozinka mora ispoštovati određenu formu.</b></p>');
+						provera = false;
+				}
+				if(!amount) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti iznos članarine.</b></p>');
+					provera = false;
+				}
+				if(amount < 0) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Iznos članarine mora biti nenegativan broj.</b></p>');
+					provera = false;
+				}
+				if(tipoviPlacanja == "") {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate odabrati najamnje jedan podržani tip plaćanja.</b></p>');
+					provera = false;
+				}
+				
+				if(provera) {
+					$("#dugmeDodaj").prop("disabled",true);
+					
+					$('#divValidacija').empty();
+					
+					var saPretplatom = $('#checkboxSaPretplatom').is(':checked');
+					var citalacPlacaClanarinu = false;
+					//alert('saPretplatom: ' + saPretplatom);
+					if(saPretplatom == true)
+						citalacPlacaClanarinu = true;
+					else
+						citalacPlacaClanarinu = false;
+					
+					var tipoviPlacanja = $("#tipoviPlacanja").val();
+					
+					formData = JSON.stringify({
+						issnbroj:$("#formaDodajCasopis [name='issnbroj']").val(),
+						naziv:$("#formaDodajCasopis [name='naziv']").val(),
+						merchantId:$("#formaDodajCasopis [name='merchantId']").val(),
+						merchantPassword:$("#formaDodajCasopis [name='merchantPassword']").val(),
+						amount:$("#formaDodajCasopis [name='amount']").val(),
+						clanarinaSeNaplacujeCitaocu:citalacPlacaClanarinu,
+						tipoviPlacanja:tipoviPlacanja,
+						paypalId : $('#paypalIdInput').val(),
+						paypalSecret : $('#paypalSecretInput').val(),
+						sigurnosniKod : $('#sigurnosniKodInput').val(),
+						pan:  $('#panInput').val()
+					});
+					
+					$.ajax({
+						url: "https://localhost:9081/casopis/dodaj",
+						type: "POST",
+						data: formData,
+						contentType: "application/json",
+						datatype: 'json',
+						crossDomain: true,
+				        headers: {  'Access-Control-Allow-Origin': '*' },
+				        xhrFields: {
+				            withCredentials: true
+				         },
+						success: function(data){
+							if(data){
+								alert("Naučni časopis je uspešno dodat.");
+								location.href = "https://localhost:9081/homePage.html"
+							}else{
+								alert("Dodavanje novog naučnog časopisa nije uspelo.");
+							}
+						},
+						error: function(data){
+							alert('GREŠKA PRILIKOM POKUŠAJA DODAVANJA NAUČNOG ČASOPISA!!!');
+						}
+					});
+				}
+			});		
+			
+			$(function() {
+			    $('#tipoviPlacanja').change(function() {
+			    	var tipoviPlacanja = $('#tipoviPlacanja').val();
+			    	if (tipoviPlacanja.indexOf('1') > -1){
+			    		 $('#paypalId').show();
+			    		 $('#paypalSecret').show();
+			    	}else{
+			    		 $('#paypalId').hide();
+			    		 $('#paypalSecret').hide();
+			    	}
+			    	if (tipoviPlacanja.indexOf('0') > -1){
+			    		 $('#sigurnosniKod').show();
+			    		 $('#pan').show();
+			    	}else{
+			    		 $('#sigurnosniKod').hide();
+			    		 $('#pan').hide();
+			    	}
+			
+			    }); 
+			});
+		</script>		
+	</body>
+</html>

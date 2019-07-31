@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		html, .mojaKlasa {
+			height: 720px;
+			background-color: #F0F8FF;
+			background-image: linear-gradient(#F0F8FF, #4682B4);
+		}
+	</style>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Banka</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script src="toastr/toastr.min.js"></script>
+    	<link href="toastr/toastr.min.css" rel="stylesheet"/>
+	</head>
+	
+	<body>
+		<div class="mojaKlasa">
+			<div class="row">
+				<div class="col-lg-12 col-lg-9"></div>
+	  			<div class="col-lg-6 col-lg-3">
+				    <div class="form-group">
+				    	<form action="index.html" class="form-horizontal">
+					        <div class="col-lg-4">
+					            <input class="btn btn-link" type="submit" value="">
+					        </div>
+				        </form>
+				        <form action="homePage.html" class="form-horizontal">
+					        <div class="col-lg-4">
+					            <input class="btn btn-link" type="submit" value="Nazad">
+					        </div>
+				        </form>
+				    </div>
+	  			</div>
+			</div>
+		
+			<div class="container">
+	   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+	        		<div class="panel panel-primary" >
+	            		<div class="panel-heading">
+	                		<div class="panel-title text-center">Podaci o kartici</div>
+	            		</div>
+	            		  
+	            		<div class="panel-body" style="padding-top:30px">
+	            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+	                		
+	                		<form id="formaPlatiKarticom" class="form-horizontal" enctype="multipart/form-data" method="POST">	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
+	                        		<input type="number" class="form-control" name="pan" value="" placeholder="PAN">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
+	                        		<input type="number" class="form-control" name="sigurnosniKod" placeholder="Sigurnosni kod">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                        		<input type="text" class="form-control" name="vlasnik" placeholder="Vlasnik">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+	                        		<input type="month" class="form-control" name="datumIsteka" placeholder="Datum isteka">
+	                    		</div>
+		                    		  
+		                    	<div id="divValidacija"></div>
+		                    		                                                                 
+		                    	<div class="form-group">
+		                        	<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+		                            	<input id="dugmePlati" type="button" class="btn btn-primary" style="float:right" value="Plati"> 	
+		                            </div>
+		                    	</div>
+	                		
+	                		</form>
+	            		</div>                     
+	        		</div>  
+	    		</div>
+			</div>
+		</div>	
+		
+		<script type="text/javascript">
+			$("#formaPlatiKarticom").click(function(){
+				var provera = true;
+				var forma = $('form[id="formaPlatiKarticom"]');
+				var pan = forma.find('[name=pan]').val();
+				var sigurnosniKod = forma.find('[name=sigurnosniKod]').val();
+				var vlasnik = forma.find('[name=vlasnik]').val();
+				var datumIsteka = forma.find('[name=datumIsteka]').val();
+				
+				if(!pan) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti pan.</b></p>');
+					provera = false;
+				}
+				if(!sigurnosniKod) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti sigurnosni kod.</b></p>');
+					provera = false;
+				}
+				if(!vlasnik) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti podatke o vlasniku kartice.</b></p>');
+					provera = false;
+				}
+				if(!datumIsteka) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti datum isteka kartice.</b></p>');
+					provera = false;
+				}
+				
+				if(provera) {
+					$("#dugmePlati").prop("disabled",true);
+					
+					$('#divValidacija').empty();
+					
+					var url = window.location.href;
+					var paymentId = url.split('=')[1];
+					
+					var data = JSON.stringify({
+						"pan": pan,
+						"securityCode": sigurnosniKod,
+						"cardHolderName": vlasnik,
+						"expirationDate": datumIsteka,
+						"paymentId":paymentId
+					});
+					
+					$.ajax({
+						async: false,
+						url: "http://192.168.43.218:1235/banka/kupiCasopis",
+				        type: "POST",
+				        contentType: "application/json",
+				        data: data,
+				        crossDomain: true,
+				        headers: {  'Access-Control-Allow-Origin': '*' },
+				        success: function (data) {
+				        	alert("")
+				        	window.location.href = data.url;
+				        },
+				        error: function (jqXHR, textStatus, errorThrown) {
+				            toastr["error"](jqXHR.responseText);
+				        }
+				    });
+				}
+			});		
+		</script>		
+	</body>
+</html>

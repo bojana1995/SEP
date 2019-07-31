@@ -1,0 +1,9 @@
+8W2cFE2hUx55MHxxuisH9gigTzdP7pRjYmQsHH2V -> auth token :D
+
+xBZKJUYian6qkvQhzgmuIT -> API Key
+J8KRyhS9MOlGxmZnN7tYLIsBaFDQjcq1 -> API Secret
+
+
+
+response (uvek se menja)
+https://sandbox.coingate.com/invoice/1774d9e6-e418-481c-af94-8db8965c886e

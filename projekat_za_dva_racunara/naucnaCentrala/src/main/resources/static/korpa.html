@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		html, .mojaKlasa {
+			height: 970px;
+			background-color: #F0F8FF;
+			background-image: linear-gradient(#F0F8FF, #4682B4);
+		}
+		
+		.mojaTabela {
+			height: 200px;
+			background-color: white;
+			overflow-y: scroll;
+			padding: 5px;
+			border: 1.5px solid steelblue;
+		}
+		
+		th {
+			background-color: deepblue;
+		}
+	</style>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Home</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script src="scripts/korpa.js"></script>
+	</head>
+	<div class="form-group col-lg-8" >
+		<h2>Korpa</h2>
+		<div class="mojaTabela">
+			<table id="tabelaRadoviKorpa" class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>Naslov</th>
+					<th>Autor</th>
+					<th>Apstrakt</th>
+					<th>Kljucne reci</th>
+					<th>Naucna oblast</th>
+					<th>Casopis</th>
+					<th>Cena</th>
+				</tr>
+			</thead>
+			</table>
+		</div>	
+		<h3 id="ukupnaCena">Ukupna cena:&nbsp</h3>
+		<h3 id="nacinPlacanjaLabela">Odaberite nacin placanja:</h3>
+		<div id="korpaPlacanjeDiv">
+		<!--<button id="bankaKorpaBtn" class="btn btn-success" style = "visibility:hidden" >Platna kartica</button>
+		&nbsp&nbsp
+		<button id="paypalKorpaBtn" class="btn btn-success" style = "visibility:hidden">PayPal</button>
+		&nbsp&nbsp
+		<button id="bitcoinKorpaBtn" class="btn btn-success" style = "visibility:hidden">Bitcoin</button>
+		  -->
+		</div>
+		</div>
+	<body>
+	</body>
+</html>

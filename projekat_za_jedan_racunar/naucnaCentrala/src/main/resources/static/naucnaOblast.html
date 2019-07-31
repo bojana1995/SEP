@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		html, .mojaKlasa {
+			height: 720px;
+			background-color: #F0F8FF;
+			background-image: linear-gradient(#F0F8FF, #4682B4);
+		}
+	</style>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Naučna oblast</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+	</head>
+	
+	<body>
+		<div class="mojaKlasa">
+			<div class="row">
+				<div class="col-lg-12 col-lg-9"></div>
+	  			<div class="col-lg-6 col-lg-3">
+				    <div class="form-group">
+				    	<form action="index.html" class="form-horizontal">
+					        <div class="col-lg-4">
+					            <input class="btn btn-link" type="submit" value="Početna">
+					        </div>
+				        </form>
+				        <form action="homePage.html" class="form-horizontal">
+					        <div class="col-lg-4">
+					            <input class="btn btn-link" type="submit" value="Nazad">
+					        </div>
+				        </form>
+				    </div>
+	  			</div>
+			</div>
+		
+			<div class="container">
+	   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+	        		<div class="panel panel-primary" >
+	            		<div class="panel-heading">
+	                		<div class="panel-title text-center">Naučna oblast</div>
+	            		</div>
+	            		  
+	            		<div class="panel-body" style="padding-top:30px">
+	            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+	                		<form id="formaDodajNaucnuOblast" class="form-horizontal" enctype="multipart/form-data" method="POST">
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+	                        		<input type="text" class="form-control" name="naziv" value="" placeholder="Naziv">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="text" class="form-control" name="opis" placeholder=Opis>
+	                    		</div>
+	                    		        
+	                    		<div id="divValidacija"></div>  
+	                    		                                                                 
+	                    		<div class="form-group">
+	                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+	                            		<input id="dugmeDodaj" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	
+	                            	</div>
+	                    		</div>
+	                		</form>
+	            		</div>                     
+	        		</div>  
+	    		</div>
+			</div>	
+		</div>
+			
+		<script type="text/javascript">
+			$("#formaDodajNaucnuOblast").click(function(){
+				var provera = true;
+				var forma = $('form[id="formaDodajNaucnuOblast"]');
+				var naziv = forma.find('[name=naziv]').val();
+				var opis = forma.find('[name=opis]').val();
+				
+				if(!naziv) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti naziv.</b></p>');
+					provera = false;
+				}
+				if(!opis) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red"><b>Morate uneti opis.</b></p>');
+					provera = false;
+				}				
+				
+				if(provera) {
+					$("#dugmeDodaj").prop("disabled",true);
+					
+					$('#divValidacija').empty();
+						
+					formData = JSON.stringify({
+						naziv:$("#formaDodajNaucnuOblast [name='naziv']").val(),
+						opis:$("#formaDodajNaucnuOblast [name='opis']").val()
+					   });
+					
+					$.ajax({
+						url: "https://localhost:9081/naucnaOblast/dodaj",
+						type: "POST",
+						data: formData,
+						contentType: "application/json",
+						datatype: 'json',
+						crossDomain: true,
+				        headers: {  'Access-Control-Allow-Origin': '*' },
+				        xhrFields: {
+				            withCredentials: true
+				         },
+						success: function(data){
+							if(data){
+								alert("Naučna oblast je uspešno dodata.");
+								location.href = "https://localhost:9081/homePage.html"
+							}else{
+								alert("Dodavanje nove naučne oblasti nije uspelo.");
+							}
+						},
+						error: function(data){
+							alert('GREŠKA PRILIKOM POKUŠAJA DODAVANJA NOVE NAUČNE OBLASTI.');
+						}
+					});
+				}
+			});		
+		</script>		
+	</body>
+</html>

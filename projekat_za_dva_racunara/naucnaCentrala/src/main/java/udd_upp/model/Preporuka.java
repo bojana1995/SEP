@@ -1,0 +1,7 @@
+package udd_upp.model;
+
+public enum Preporuka {
+
+	PRIHVATITI, PRIHVATITI_UZ_MANJE_ISPRAVKE, USLOVNO_PRIHVATITI_UZ_VECE_ISPRAVKE, ODBITI 
+	
+}

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		html, .mojaKlasa {
+			height: 970px;
+			background-color: #F0F8FF;
+			background-image: linear-gradient(#F0F8FF, #4682B4);
+		}
+		
+		.mojaTabela {
+			height: 200px;
+			background-color: white;
+			overflow-y: scroll;
+			padding: 5px;
+			border: 1.5px solid steelblue;
+		}
+		
+		th {
+			background-color: deepblue;
+		}
+	</style>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Home</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script src="scripts/homePageScript.js"></script>
+		<script src="scripts/prijava.js"></script>
+	</head>
+	
+	<body>
+		<div class="mojaKlasa">
+			<div class="row">
+				<div class="col-lg-12 col-lg-9"></div>
+	  			<div class="col-lg-6 col-lg-3">
+				    <div class="form-group">
+				    	 
+				        <form action="" class="form-horizontal">
+					        <div class="col-lg-4">
+					            <input id="dugmeOdjaviSe" class="btn btn-link" type="button" value="Odjavi se">
+					        </div>
+			        	</form>
+			        	 
+				    </div>
+	  			</div>
+			</div>
+		
+			<div class="tabcontent" style="padding-top:20px">
+				<div class="form-group col-lg-2" style="padding-left:30px" id="tabLevo">
+					<img class="img-thumbnail" src="slike/korisnik.jpg" height="190" width="190"/>
+					<form class="form-horizontal">
+						<div class="text-center" style="padding-top:10px">
+							<img src="slike/azuriranje.png" class="rounded" height="20" width="20">
+					    	<input id="dugmeAzurirajPodatke" class="btn btn-link" type="button" value="Ažuriraj podatke" data-toggle="modal" data-target="#modalniAzurirajKorisnickePodatke" onclick="azurirajKorisnickePodatke()">
+					    </div>
+					</form>
+					<form class="form-horizontal">
+						<div class="text-center" style="padding-top:10px">
+					    	<input id="dugmeDodajCasopis" style="display:none" class="btn btn-primary" type="button" value="Dodaj časopis">
+					    </div>
+					</form>
+					<form class="form-horizontal">
+						<div class="text-center" style="padding-top:10px">
+					    	<input id="dugmeDodajNaucnuOblast" style="display:none" class="btn btn-primary" type="button" value="Dodaj naučnu oblast">
+					    </div>
+					</form>
+					<form class="form-horizontal">
+						<div class="text-center" style="padding-top:10px">
+					    	<input id="dugmeDodajRad" style="display:none" class="btn btn-primary" type="button" value="Dodaj naučni rad">
+					    </div>
+					</form>
+				</div>
+				
+				<div class="form-group col-lg-2" id="tabInformacijeOKorisniku" style="padding-top:30px">
+					<table id="tabelaInformacijeOKorisniku" class="table"></table>
+				</div>
+				
+				<div class="form-group col-lg-8" id="tabDinamickiPrikazNaucnihOblastiKojePokrivaUrednik">
+					<div id="divKorpa">
+						<button id="btnKorpa" class="btn btn-primary" onclick="prikaziKorpu()">Korpa</button>
+					</div>
+					 <h4><b><span id="labelaRadovi" class="row"></span></b></h4>
+					<div class="mojaTabela">
+						<table id="tabelaRadovi" class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>Naslov</th>
+								<th>Autor</th>
+								<th>Apstrakt</th>
+								<th>Kljucne reci</th>
+								<th>Naucna oblast</th>
+								<th>Casopis</th>
+								<th>Cena</th>
+								<th colspan="3"></th>
+							</tr>
+						</thead>
+						</table>
+					</div>	
+					<h4><b><span id="labelaCasopisi" class="row"></span></b></h4>
+					<div class="mojaTabela">
+						<table id="tabelaCasopisi" class="table table-hover table-bordered"></table>
+					</div>
+					 
+					<h4><b><span id="labelaNaucneOblasti" class="row"></span></b></h4>
+					<div class="mojaTabela">
+						<table id="tabelaNaucneOblasti" class="table table-hover table-bordered"></table>
+					</div>
+					
+						
+				</div>			
+			</div>
+						
+			<!-- MODALNI DIJALOG ZA AZURIRANJE CASOPISA -->
+			<div id="modalniAzurirajCasopis" class="modal" tabindex="-1" role="dialog">
+			  	<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+					      <div class="modal-header" style="background-color: #F0F8FF">
+					      	<h4 class="modal-title"><b>Ažuriranje naučnog časopisa</b></h4>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					      	<form id="formaAzurirajCasopis" class="form-horizontal" enctype="multipart/form-data" method="POST">	                    		
+					        	<div class="input-group" style="margin-bottom: 25px">
+					         		<span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+					                <input type="number" class="form-control" id="issnbrojA" name="issnbroj" value="" placeholder="Novi ISSN broj" readonly>
+					             </div>
+					                    		
+					             <div class="input-group" style="margin-bottom: 25px">
+					                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+					                 <input type="text" class="form-control" id="nazivA" name="naziv" placeholder="Novi naziv">
+					             </div>
+					                    		
+					             <div class="input-group" style="margin-bottom: 25px">
+					             	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					                <input type="text" class="form-control" id="merchantIdA" name="merchantId" placeholder="Nova oznaka poslodavca">
+					             </div>
+					                    		
+					             <div class="input-group" style="margin-bottom: 25px">
+					             	<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					                <input type="password" class="form-control" id="merchantPasswordA" name="merchantPassword" placeholder="Nova lozinka poslodavca">
+					             </div>
+					                    		
+					             <div class="input-group" style="margin-bottom: 25px">
+					             	<span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+					                <input type="number" class="form-control" id="amountA" name="amount" placeholder="Novi iznos članarine">
+					             </div> 
+						                    		  
+						         <div id="divValidacijaCasopis"></div>
+						                    		                                                                 
+						         <div class="form-group">
+						         	<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+						            	<input id="dugmeAzurirajCasopisModalni" type="button" class="btn btn-primary" style="float:right" value="Ažuriraj"> 	
+						            </div>
+						         </div>	
+					      	</form>
+					      </div>
+				    </div>
+			  	</div>
+			</div>
+					
+			<!-- MODALNI DIJALOG ZA AZURIRANJE NAUCNE OBLASTI -->
+			<div id="modalniAzurirajNaucnuOblast" class="modal" tabindex="-1" role="dialog">
+			  	<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+					      <div class="modal-header" style="background-color: #F0F8FF">
+					      	<h4 class="modal-title"><b>Ažuriranje naučne oblasti</b></h4>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					      	<form id="formaAzurirajNaucnuOblast" class="form-horizontal" enctype="multipart/form-data" method="POST">	                    		
+					        	<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+	                        		<input type="text" class="form-control" id="nazivNOA" name="nazivNO" value="" placeholder="Naziv">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="text" class="form-control" id="opisNOA" name="opisNO" placeholder=Opis>
+	                    		</div>
+	                    		        
+	                    		<div id="divValidacijaNO"></div>  
+						                    		                                                                 
+						         <div class="form-group">
+						         	<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+						            	<input id="dugmeAzurirajNaucnuOblastModalni" type="button" class="btn btn-primary" style="float:right" value="Ažuriraj"> 	
+						            </div>
+						         </div>	
+					      	</form>
+					      </div>
+				    </div>
+			  	</div>
+			</div>
+			
+			<!-- MODALNI DIJALOG ZA AZURIRANJE NAUCNIH RADOVA -->
+			<div id="modalniAzurirajRad" class="modal" tabindex="-1" role="dialog">
+			  	<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+					      <div class="modal-header" style="background-color: #F0F8FF">
+					      	<h4 class="modal-title"><b>Ažuriranje naučnog rada</b></h4>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					      	<div class="input-group" style="margin-bottom: 10px">
+	                        	<!--
+	                        	<form>
+									<div class="form-group" style="margin-left: 2px">
+									    <p>Odaberite pdf sa radnom verzijom Vašeg rada:</p>
+									   	<input type="file" class="form-control-file" name="pdfRadnaVerzijaR" id="pdfRadnaVerzijaRA">
+									  </div>
+								</form>
+								 -->
+	                    	</div>
+	                    
+	                    	<div class="input-group" style="margin-bottom: 15px">
+	                    		<!--
+	                        	<form>
+									<div class="form-group" style="margin-left: 2px">
+									   	<p>Odaberite pdf sa finalnom verzijom Vašeg rada:</p>
+									   	<input type="file" class="form-control-file" name="pdfFinalnaVerzijaR" id="pdfFinalnaVerzijaRA">
+								  	</div>
+								</form>
+								 -->
+	                    	</div>
+	                    	
+	                    	<div class="form-group col-lg-12"  style="margin-bottom: 25px; margin-left: -15px">
+								<label>Odaberite naučnu oblast kojoj rad pripada:</label> 
+								<select class="form-control" id="naucnaOblastRA"></select>
+							</div>
+					      	
+					      	<form id="formaAzurirajRad" class="form-horizontal" enctype="multipart/form-data" method="POST">	                    		
+					        	<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+	                        		<input type="text" class="form-control" id="naslovRA" name="naslovR" value="" placeholder="Naslov">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+	                        		<input type="text" class="form-control" id="kljucniPojmoviRA" name="kljucniPojmoviR" placeholder="Ključni pojmovi">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+	                        		<input type="text" class="form-control" id="apstraktRA" name="apstraktR" placeholder="Apstrakt">
+	                    		</div>
+	                    		        
+	                    		<div id="divValidacijaRad"></div> 
+						                    		                                                                 
+						         <div class="form-group">
+						         	<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+						            	<input id="dugmeAzurirajRadModalni" type="button" class="btn btn-primary" style="float:right" value="Ažuriraj"> 	
+						            </div>
+						         </div>	
+					      	</form>
+					      </div>
+				    </div>
+			  	</div>
+			</div>
+			
+			
+			<!-- MODALNI DIJALOG ZA AZURIRANJE KORISNICKIH PODATAKA -->
+			<div id="modalniAzurirajKorisnickePodatke" class="modal" tabindex="-1" role="dialog">
+			  	<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+					      <div class="modal-header" style="background-color: #F0F8FF">
+					      	<h4 class="modal-title"><b>Ažuriranje korisničkih podataka</b></h4>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					      	<form id="formaAzurirajKorisnickePodatke" class="form-horizontal" enctype="multipart/form-data" method="POST">	                    		
+					        	<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+	                        		<input type="email" class="form-control" id="emailKPA" name="emailKP" value="" readonly>
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="password" class="form-control" id="lozinka1KPA" name="lozinka1KP" placeholder="Nova lozinka">
+	                    		</div> 
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="password" class="form-control" id="lozinka2KPA" name="lozinka2KP" placeholder="Ponovo unesite novu lozinku">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                        		<input type="text" class="form-control" id="imeKPA" name="imeKP" placeholder="Novo ime">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                        		<input type="text" class="form-control" id="prezimeKPA" name="prezimeKP" placeholder="Novo prezime">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+	                        		<input type="text" class="form-control" id="gradKPA" name="gradKP" placeholder="Novi grad">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+	                        		<input type="text" class="form-control" id="drzavaKPA" name="drzavaKP" placeholder="Nova država">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+	                        		<input type="text" class="form-control" id="titulaKPA" name="titulaKP" placeholder="Nova titula">
+	                    		</div>
+	                    		              
+	                    		<div id="divValidacijaKP"></div>  
+	                    		                                                                 
+	                    		<div class="form-group">
+	                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+	                            		<input id="dugmeAzurirajKorisnickePodatkeModalni" type="button" class="btn btn-primary" style="float:right" value="Ažuriraj"> 	
+	                            	</div>
+	                    		</div>	
+					      	</form>
+					      </div>
+				    </div>
+			  	</div>
+			</div>
+		</div>
+			
+		<script>
+		$("#dugmeDodajNaucnuOblast").click(function(){
+			location.href = "https://localhost:9081/naucnaOblast.html"
+		});
+		
+		 $("#dugmeDodajCasopis").click(function(){
+			location.href = "https://localhost:9081/casopis.html"
+		 });
+		
+		 $("#dugmeDodajRad").click(function(){
+			location.href = "https://localhost:9081/rad.html"
+		 });
+		 
+		 function prikaziKorpu(){
+			 location.href = "https://localhost:9081/korpa.html"
+		 }
+		</script>
+	</body>
+</html>

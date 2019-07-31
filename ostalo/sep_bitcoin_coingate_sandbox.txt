@@ -1,0 +1,5 @@
+bitcoin:
+
+1. link za logovanje na test API:	https://sandbox.coingate.com/
+2. username: bojana.pzs@gmail.com
+3. password: perisa123
